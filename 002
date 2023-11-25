@@ -1,0 +1,36 @@
+import re
+l=[]
+l2=[]
+l4=[]
+l5=[]
+while True:
+    s=input()
+    if s=="label-data.tsv":
+        continue
+    if s=="raw-data.txt":
+        break
+    if '\t' in s:
+        x=(s.split('\t')[1])
+        l.append(x)
+        l2.append(s.split('\t')[0])
+
+while True:
+    try:
+        s=input()
+        if s=="1":
+            break
+        if s!="raw-data.txt":            
+            cleaned_text=(re.sub("[^a-zA-z ]","",s).lower())
+            a=cleaned_text.replace("^", "")
+            l5.append(a.replace("-", ""))
+            l4.append(s)
+    except EOFError:
+        break
+print(l5)    
+for i in range (len(l)):
+    if l[i] not in l5:
+        print(l2[i]+'\t'+l[i])
+       # print(1)
+    else:
+        print(l2[i]+'\t'+l4[l5.index(l[i])])
+        #print(2)
